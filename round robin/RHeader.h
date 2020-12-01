@@ -99,7 +99,7 @@ private:
 
 		int Average_turn_around_time = 0;
 
-		cout << "Processes " << " Burst time " << " Burst time " << " Waiting time " << " Turn around time\n";
+		cout << "Processes " << " Burst time " << " Waiting time " << " Turn around time\n";
 
 
 		for (int i = 0; i < n; i++)
