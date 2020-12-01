@@ -8,6 +8,7 @@ struct process {
 	int treatment_burst;
 	int waiting_time;
 	int Turn_around_time;
+	int priority;
 };
 
 class RR {
@@ -15,10 +16,7 @@ class RR {
 public:
 	void findavg(int n, process pr[], int quantum)
 	{
-		int Average_waiting_time = 0;
-
-		int Average_turn_around_time = 0;
-
+		priors(n, pr);
 
 		WaitingTime(n, pr, quantum);
 
@@ -26,32 +24,21 @@ public:
 		TurnAroundTime(n, pr);
 
 
-		cout << "Processes " << " Burst time " << " Waiting time " << " Turn around time\n";
-
-
-		for (int i = 0; i < n; i++)
-		{
-			Average_waiting_time = Average_waiting_time + pr[i].waiting_time;
-			Average_turn_around_time = Average_turn_around_time + pr[i].Turn_around_time;
-			cout << " " << i + 1 << "\t\t " << pr[i].burst_time << "\t  " << pr[i].waiting_time << "\t \t " << pr[i].Turn_around_time << endl;
-		}
-
-		cout << "Average waiting time = " << (float)Average_waiting_time / (float)n;
-		cout << "\nAverage turn around time = " << (float)Average_turn_around_time / (float)n;
+	    shows( n, pr);
 	}
 
 
 private: 
 	void procrsing(process pr, int Current_time) {
 
-		cout << "---------" << endl;
-		cout << "| " << pr.procID << " | " << Current_time << " |" << endl;
-		cout << "---------" << endl;
+		cout << "------------" << endl;
+		cout << "| " << pr.procID << " | "<< pr.priority << " | " << Current_time << " |" << endl;
+		cout << "------------" << endl;
 	}
 	void WaitingTime(int n, process pr[], int quantum)
 	{
 
-		cout << "PrID Time" << endl;
+		cout << "PrID Prior Time" << endl;
 		int Current_time = 0;
 		bool chekcer;
 		do
@@ -104,5 +91,41 @@ private:
 	{
 		for (int i = 0; i < n; i++)
 			pr[i].Turn_around_time = pr[i].burst_time + pr[i].waiting_time;
+	}
+
+	void shows (int n, process pr[])
+	{
+		int Average_waiting_time = 0;
+
+		int Average_turn_around_time = 0;
+
+		cout << "Processes " << " Burst time " << " Burst time " << " Waiting time " << " Turn around time\n";
+
+
+		for (int i = 0; i < n; i++)
+		{
+			Average_waiting_time = Average_waiting_time + pr[i].waiting_time;
+			Average_turn_around_time = Average_turn_around_time + pr[i].Turn_around_time;
+			cout << " " << i + 1 << "\t\t " << pr[i].burst_time << "\t  " << pr[i].waiting_time << "\t \t " << pr[i].Turn_around_time << endl;
+		}
+
+		cout << "Average waiting time = " << (float)Average_waiting_time / (float)n;
+		cout << "\nAverage turn around time = " << (float)Average_turn_around_time / (float)n;
+
+	}
+
+	void priors(int n, process pr[])
+	{
+		process temp;
+		for (int i = 0; i < n - 1; i++) {
+			for (int j = 0; j < n - i - 1; j++) {
+				if (pr[j].priority > pr[j + 1].priority) {				
+					temp = pr[j];
+					pr[j]= pr[j + 1];
+					pr[j + 1] = temp;
+				}
+			}
+		}
+		
 	}
 };
