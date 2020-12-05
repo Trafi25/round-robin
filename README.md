@@ -4,8 +4,6 @@
 
 We can Understand Round Robin Scheduling Algorithm by taking an example Suppose there is 4 process. and each process comes at the same time so based on FIFO(First in First Out) scheduler keep all process in Ready Queue and forgiven time Slice each process will be executed until all process finish. Let's take an example and try to understand How Round Robin Works.
 
-![example](images/6aloc.PNG)
-
 
 ### For Example
 
@@ -66,4 +64,5 @@ Idle time by intensity:
 
 
 Wait time by task size:
+
 ![example](images/graph3.PNG)
