@@ -52,3 +52,18 @@ and quantum=4
 and we make..
 
 ![example](images/terminal.PNG)
+
+
+### Graphs 
+
+Wait time by intensity:
+
+![example](images/graph.PNG)
+
+Idle time by intensity:
+
+![example](images/graph2.PNG)
+
+
+Wait time by task size:
+![example](images/graph3.PNG)
